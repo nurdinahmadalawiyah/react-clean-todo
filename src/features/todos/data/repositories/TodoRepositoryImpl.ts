@@ -17,4 +17,11 @@ export class TodoRepositoryImpl implements TodoRepository {
         return await this.remoteDataSource.createTodo(todo, userId)
     }
 
+    async updateTodo(id: number, updates: { completed?: boolean; todo?: string; }): Promise<Todo> {
+        return await this.remoteDataSource.updateTodo(id, updates);
+    }
+
+    async deleteTodo(id: number): Promise<boolean> {
+        return await this.remoteDataSource.deleteTodo(id)
+    }
 }

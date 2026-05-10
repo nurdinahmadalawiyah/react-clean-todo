@@ -22,4 +22,14 @@ export class TodoRemoteDataSources {
         });
         return response.data
     }
+
+    async updateTodo(id: number, updates: { completed?: boolean; todo?: string }): Promise<Todo> {
+        const response = await apiClient.put<Todo>(`/todos/${id}`, updates);
+        return response.data
+    }
+
+    async deleteTodo(id: number): Promise<boolean> {
+        const response = await apiClient.delete(`/todos/${id}`);
+        return response.data?.isDeleted === true || response.status === 200;
+    }
 }
